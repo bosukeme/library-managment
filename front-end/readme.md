@@ -89,13 +89,20 @@ docker-compose stop
 ```
 
 
-## API documentation
+### API documentation
 
 Access API documentation via Swagger UI using the link below after starting up the application
 
 ```bash
 http://localhost:8001/api/docs/
 ```
+
+### Testing
+
+```bash
+python manage.py test
+```
+
 
 
 ## Contributing
