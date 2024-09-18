@@ -86,11 +86,11 @@ Once this successfully starts up. Proceed to setting up the frontend service and
 
 ### Setting Up frontend:
 
-Follow the link : ...
+Follow the link : https://github.com/bosukeme/library-managment/blob/main/front-end/readme.md
 
 ### Setting Up backend:
 
-Follow the link : ...
+Follow the link : https://github.com/bosukeme/library-managment/blob/main/back-end/readme.md
 
 
 ## Contributing
