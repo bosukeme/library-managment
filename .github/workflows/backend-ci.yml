@@ -49,11 +49,11 @@ jobs:
           cd back-end
           pip install -r requirements.txt
           
-      - name: Run database migrations
+      - name: Run database migrations and test
+        env:
+          SECRET_KEY: ${{ secrets.SECRET_KEY }}
         run: |
           cd back-end
           python manage.py makemigrations
           python manage.py migrate
-
-      - name: Run tests
-        run: cd back-end && python manage.py test
+          python manage.py test
