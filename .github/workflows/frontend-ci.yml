@@ -1,4 +1,4 @@
-name: Backend CI
+name: Frontend CI
 
 on:
   push:
@@ -21,15 +21,12 @@ jobs:
         with:
           python-version: '3.11'
         
-      - name: Install Flake8
+      - name: Install dependencies
         run: |
           pip install flake8
       
-      - name: List files and folders in the root directory
-        run: ls -la
-      
       - name: Run Flake8
-        run: cd back-end && flake8 .
+        run: cd front-end && flake8 .
 
   # test:
   #   name: Run tests
@@ -38,6 +35,8 @@ jobs:
   #   steps:
   #     - name: Checkout code
   #       uses: actions/checkout@v3
+  #       with:
+  #         path: frontend
         
   #     - name: Set up Python
   #       uses: actions/setup-python@v4
@@ -46,14 +45,14 @@ jobs:
         
   #     - name: Install dependencies
   #       run: |
-  #         cd back-end
+  #         cd frontend
   #         pip install -r requirements.txt
           
-  #     - name: Run database migrations and test
-  #       env:
-  #         SECRET_KEY: ${{ secrets.SECRET_KEY }}
+  #     - name: Run database migrations
   #       run: |
-  #         cd back-end
+  #         cd frontend
   #         python manage.py makemigrations
   #         python manage.py migrate
-  #         python manage.py test
+
+  #     - name: Run tests
+  #       run: cd frontend && python manage.py test
