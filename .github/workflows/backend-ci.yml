@@ -25,7 +25,6 @@ jobs:
         
       - name: Install Flake8
         run: |
-          cd back-end
           pip install flake8
       
       - name: Run Flake8
