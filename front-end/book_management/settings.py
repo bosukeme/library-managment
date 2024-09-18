@@ -55,23 +55,23 @@ TEMPLATES = [
 
 WSGI_APPLICATION = "book_management.wsgi.application"
 
-# DATABASES = {
-#     "default": {
-#         "ENGINE": "django.db.backends.sqlite3",
-#         "NAME": BASE_DIR / "db.sqlite3",
-#     }
-# }
-
 DATABASES = {
-    'default': {
-        'ENGINE': 'django.db.backends.postgresql',
-        'NAME': os.environ.get("DBNAME"),
-        'USER': os.environ.get("DBUSER"),
-        'PASSWORD': os.environ.get("DBPASSWORD"),
-        'HOST': os.environ.get("DBHOST"),
-        'PORT': os.environ.get("DBPORT"),
+    "default": {
+        "ENGINE": "django.db.backends.sqlite3",
+        "NAME": BASE_DIR / "db.sqlite3",
     }
 }
+
+# DATABASES = {
+#     'default': {
+#         'ENGINE': 'django.db.backends.postgresql',
+#         'NAME': os.environ.get("DBNAME"),
+#         'USER': os.environ.get("DBUSER"),
+#         'PASSWORD': os.environ.get("DBPASSWORD"),
+#         'HOST': os.environ.get("DBHOST"),
+#         'PORT': os.environ.get("DBPORT"),
+#     }
+# }
 
 AUTH_PASSWORD_VALIDATORS = [
     {
