@@ -23,14 +23,13 @@ jobs:
         with:
           python-version: '3.11'
         
-      - name: Install dependencies
+      - name: Install Flake8
         run: |
-          cd backend
-          pip install -r requirements.txt
+          cd back-end
           pip install flake8
       
       - name: Run Flake8
-        run: cd backend && flake8 .
+        run: cd back-end && flake8 .
 
   test:
     name: Run tests
@@ -49,14 +48,14 @@ jobs:
         
       - name: Install dependencies
         run: |
-          cd backend
-          pip install -r requirements.txt
+          cd back-end
+          pip install -r back-end/requirements.txt
           
       - name: Run database migrations
         run: |
-          cd backend
+          cd back-end
           python manage.py makemigrations
           python manage.py migrate
 
       - name: Run tests
-        run: cd backend && python manage.py test
+        run: cd back-end && python manage.py test
