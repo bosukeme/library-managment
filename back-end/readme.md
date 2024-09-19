@@ -101,7 +101,14 @@ http://localhost:8002/api/docs/
 ### Testing
 
 ```bash
+docker exec -it backend bash
+```
+
+```bash
+python manage.py makemigrations
+python manage.py migrate
 python manage.py test
+
 ```
 
 

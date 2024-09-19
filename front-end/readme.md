@@ -98,9 +98,15 @@ http://localhost:8001/api/docs/
 ```
 
 ### Testing
+```bash
+docker exec -it frontend bash
+```
 
 ```bash
+python manage.py makemigrations
+python manage.py migrate
 python manage.py test
+
 ```
 
 
