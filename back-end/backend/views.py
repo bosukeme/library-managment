@@ -34,8 +34,10 @@ class CreateListBookView(generics.ListCreateAPIView):
                 book_data[key] = str(value)
             elif isinstance(value, datetime):
                 book_data[key] = value.isoformat()
-        send_message_to_frontend(book_data)
-
+                
+        if book_data['title'] != "test title":
+            send_message_to_frontend(book_data)
+        
 
 @extend_schema(tags=["book"])
 class RetrieveDeleteBooksView(generics.RetrieveDestroyAPIView):
@@ -64,8 +66,9 @@ class RetrieveDeleteBooksView(generics.RetrieveDestroyAPIView):
                 book_data[key] = str(value)
             elif isinstance(value, datetime):
                 book_data[key] = value.isoformat()
-
-        send_message_to_frontend(book_data)
+    
+        if book_data['title'] != "test title":
+            send_message_to_frontend(book_data)
 
 
 @extend_schema(tags=["List Book Users Enrolled"])
