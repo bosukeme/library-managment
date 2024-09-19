@@ -28,31 +28,44 @@ jobs:
       - name: Run Flake8
         run: cd front-end && flake8 .
 
-  # test:
-  #   name: Run tests
-  #   runs-on: ubuntu-latest
-  #   needs: lint
-  #   steps:
-  #     - name: Checkout code
-  #       uses: actions/checkout@v3
-  #       with:
-  #         path: frontend
-        
-  #     - name: Set up Python
-  #       uses: actions/setup-python@v4
-  #       with:
-  #         python-version: '3.11'
-        
-  #     - name: Install dependencies
-  #       run: |
-  #         cd frontend
-  #         pip install -r requirements.txt
-          
-  #     - name: Run database migrations
-  #       run: |
-  #         cd frontend
-  #         python manage.py makemigrations
-  #         python manage.py migrate
+  test:
+    name: Run tests
+    runs-on: ubuntu-latest
+    needs: lint
 
-  #     - name: Run tests
-  #       run: cd frontend && python manage.py test
+    services:
+      rabbitmq:
+        image: rabbitmq:3-management
+        ports:
+          - 5672:5672  
+          - 15672:15672
+        options: >-
+          --health-cmd "rabbitmq-diagnostics -q ping"
+          --health-interval 10s
+          --health-timeout 5s
+          --health-retries 5
+
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v3
+        with:
+          path: frontend
+        
+      - name: Set up Python
+        uses: actions/setup-python@v4
+        with:
+          python-version: '3.11'
+        
+      - name: Install dependencies
+        run: |
+          cd front-end
+          pip install -r requirements.txt
+          
+      - name: Run database migrations and test
+        env:
+          SECRET_KEY: ${{ secrets.SECRET_KEY }}
+        run: |
+          cd front-end
+          python manage.py makemigrations
+          python manage.py migrate
+          python manage.py test

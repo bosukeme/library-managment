@@ -32,7 +32,8 @@ class CreateBookUser(generics.CreateAPIView):
             elif isinstance(value, datetime):
                 book_user_data[key] = value.isoformat()
 
-        send_message_to_backend(book_user_data)
+        if book_user_data.email != "test@test4.com":
+            send_message_to_backend(book_user_data)
 
 
 @extend_schema(tags=["Books"])
@@ -82,4 +83,5 @@ class BorrowBookView(generics.CreateAPIView):
             elif isinstance(value, datetime):
                 borrow_book_data[key] = value.isoformat()
 
-        send_message_to_backend(borrow_book_data)
+        if book.title != "test title":
+            send_message_to_backend(borrow_book_data)
